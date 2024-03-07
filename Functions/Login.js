@@ -18,11 +18,9 @@ module.exports = async function loginFunction(builder, username, password, url){
             driver.findElement(By.id("acceptButton")).click()
         }
         await timer(3000)
-        if(driver.findElement(By.title("Bing").isDisplayed())){
-            console.log("Logged in successfully")
-        }
+        driver.wait(until.titleIs("Bing"), 3000)
     }
-    finally{
-        driver.quit()
+    catch(err){
+        console.log(err)
     }
 }
